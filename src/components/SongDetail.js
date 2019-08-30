@@ -3,15 +3,15 @@ import { connect } from "react-redux";
 
 class SongDetail extends React.Component {
   render() {
-    const { selectedSong } = this.props;
+    const { song } = this.props;
 
-    if (!selectedSong) {
+    if (!song) {
       return <></>;
     } else {
       return (
         <div className="ui segment">
-          <h4>{selectedSong.name}</h4>
-          <p>{selectedSong.duration}</p>
+          <h4>{song.name}</h4>
+          <p>{song.duration}</p>
         </div>
       );
     }
@@ -19,7 +19,7 @@ class SongDetail extends React.Component {
 }
 
 const mapStateToProps = state => {
-  return { selectedSong: state.selectedSong };
+  return { song: state.selectedSong };
 };
 
 export default connect(mapStateToProps)(SongDetail);
