@@ -4,7 +4,8 @@ import SongDetail from "./SongDetail";
 
 class App extends React.Component {
   state = {
-    songs: []
+    songs: [],
+    selectedSong: null
   };
 
   componentDidMount() {
@@ -31,21 +32,24 @@ class App extends React.Component {
       }
     ];
 
-    this.setState({ songs: songs });
+    this.setState({ songs: songs, selectedSong: songs[0] });
   }
 
-  onSelectSong() {
-    console.log("Song: ");
-  }
+  onSelectSong = song => {
+    console.log("Song: ", song);
+    this.setState({ selectedSong: song });
+  };
 
   render() {
     return (
-      <div className="ui column stackable grid container">
-        <div className="four wide column">
-          <SongList songs={this.state.songs} onSelectSong={this.onSelectSong} />
-        </div>
-        <div className="twelve wide column">
-          <SongDetail />
+      <div className="ui container grid">
+        <div className="ui row">
+          <div className="four wide column">
+            <SongList songs={this.state.songs} onSelectSong={this.onSelectSong} />
+          </div>
+          <div className="twelve wide column">
+            <SongDetail song={this.state.selectedSong} />
+          </div>
         </div>
       </div>
     );
